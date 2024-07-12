@@ -1,7 +1,8 @@
 const express = require ('express');
+const { check, validationResult } = require ('express-validator');
 const usersRepo = require ('../../repositories/users');
-const signupTemplate = require ('../../views/auth/signup');
-const signinTemplate = require ('../../views/auth/signin');
+const signupTemplate = require ('../../views1/admin1/auth/signup');
+const signinTemplate = require ('../../views1/admin1/auth/signin');
 
 const router = express.Router();
 
@@ -13,19 +14,38 @@ router.get('/signup',(req,res) =>{
 
 
 
-router.post('/signup', async (req, res)=>{
+router.post('/signup',[ 
+    check('email')
+        .trim()
+        .normalizeEmail()
+        .isEmail()
+        .withMessage('Email is required')
+        .custom(async (email)=>{
+            const existingUser = await usersRepo.getOneBy({email});
+
+            if (existingUser) {
+                throw new Error('Email already in use');
+            }
+        }),
+    check('password')
+        .trim()
+        .isLength({min :4, max: 22})
+        .withMessage('Password must be between 4 and 22 characters'),
+    check('passwordConfirmation')
+        .trim()
+        .isLength({min :4, max: 22})
+        .withMessage('Password must be between 4 and 22 characters')
+        .custom((passwordConfirmation, { req }) =>{
+            if(passwordConfirmation !== req.body.password){
+                throw new Error('Passwords do not match');
+            }
+        })
+], async (req, res)=>{
+    const errors = validationResult(req);
+
+    console.log(errors);
     const {email, password, passwordConfirmation,message} = req.body;
-
-    const existingUser = await usersRepo.getOneBy({email});
-    if(existingUser){
-        return res.send('User already exists');
-        }
-    if(password !== passwordConfirmation){
-        return res.send(`Passwords do not match 
-            <a href="#" onclick="history.back();" class="return-button">Return</a>`);
-        }
-
-     const user = await usersRepo.create({email,password,message});
+    const user = await usersRepo.create({email,password,message});
 
         req.session.userId = user.id;
 
