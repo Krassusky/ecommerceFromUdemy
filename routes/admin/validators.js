@@ -33,6 +33,42 @@ module.exports = {
             }else {
                 return true;
             }
+        }),
+
+    requireCorrectUser:
+    check('email')
+        .trim()
+        .normalizeEmail()
+        .isEmail()
+        .withMessage('Please enter a valid email address')
+        .custom(async (email)=>{
+            const user = await usersRepo.getOneBy({email});
+            if (!user) {
+                throw new Error('No user with that email address');
+                }else {
+                    return true;;
+                }
+
+        }),
+
+    requireCorrectPassword:
+    check('password')
+        .trim()
+        .custom(async(password, {req})=>{
+            const user = await usersRepo.getOneBy({email:req.body.email});
+            if (!user) {
+                throw new Error ('invalid password')};
+
+            const validPassword = await usersRepo.comparePasswords(
+                user.password,
+                password
+            );
+            if(!validPassword){
+                throw new Error('invalid password');
+        
+            }
+
         })
+
 
 };

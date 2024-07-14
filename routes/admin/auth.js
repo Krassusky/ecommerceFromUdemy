@@ -3,7 +3,12 @@ const { check, validationResult } = require ('express-validator');
 const usersRepo = require ('../../repositories/users');
 const signupTemplate = require ('../../views1/admin1/auth/signup');
 const signinTemplate = require ('../../views1/admin1/auth/signin');
-const { requireEmail, requirePassword, requirePasswordConfirmation } = require ('./validators')
+const { 
+    requireEmail, 
+    requirePassword, 
+    requirePasswordConfirmation,
+    requireCorrectUser,
+    requireCorrectPassword } = require ('./validators')
 
 const router = express.Router();
 
@@ -26,11 +31,10 @@ router.post('/signup',[
         return res.send(signupTemplate({ req, errors }));
         }
 
-    
     const {email, password} = req.body;
     const user = await usersRepo.create({email,password,});
 
-        req.session.userId = user.id;
+    req.session.userId = user.id;
 
         res.send(`User created successfully  
             <a href="#" onclick="history.back();" class="return-button">Return</a>`);
@@ -46,57 +50,29 @@ router.get('/signout', (req,res) => {
 });
 
 router.get('/signin', (req,res) => {
-    res.send(signinTemplate({ req }));
+    res.send(signinTemplate({ }));
 
 
 });
 
 router.post('/signin',[
-    check('email')
-        .trim()
-        .normalizeEmail()
-        .isEmail()
-        .withMessage('Please enter a valid email address')
-        .custom(async (email)=>{
-            const user = await usersRepo.getOneBy({email});
-            if (!user) {
-                throw new Error('No user with that email address');
-                }
-
-        }),
-    check('password')
-        .trim()
-        .custom(async(password, {req})=>{
-            const user = await usersRepo.getOneBy({email:req.body.email});
-            if (!user) {
-                throw new Error ('invalid password')};
-
-            const validPassword = await usersRepo.comparePasswords(
-                user.password,
-                password
-            );
-            if(!validPassword){
-                throw new Error('invalid password');
-        
-            }
-
-        })
+    requireCorrectUser,
+    requireCorrectPassword
 
 ], async (req,res) => {
     const errors = validationResult (req);
+    if (!errors.isEmpty()) {
+        return res.send(signinTemplate({ req, errors }));
+        }
+    
     console.log(errors);
-    const {email,} = req.body;
+
+    const {email} = req.body;
 
     const user = await usersRepo.getOneBy({email});
-
-    if(!user){
-        return res.send(`email does not exist <a href="#" onclick="history.back();" class="return-button">Return</a>`);
-        }
-
-    
          
-        req.session.userId = user.id;
-        return res.send(`you are id is ${req.session.userId} <a href="#" onclick="history.back();" class="return-button">Return</a>`);
+    req.session.userId = user.id;
+    return res.send(`you are id is ${req.session.userId} <a href="#" onclick="history.back();" class="return-button">Return</a>`);
     
 
 });
