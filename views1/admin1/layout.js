@@ -17,7 +17,7 @@ module.exports = ({content}) => {
     <nav class="navbar fixed-top bg-body-tertiary MyNavbar">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Admin</a>
-            <a class="navbar-brand" href="#">Product</a>
+            <a class="navbar-brand" href="/admin/products/new">Product</a>
         </div>
     </nav>
 

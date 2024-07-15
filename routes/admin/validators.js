@@ -46,7 +46,7 @@ module.exports = {
             if (!user) {
                 throw new Error('No user with that email address');
                 }else {
-                    return true;;
+                    return true;
                 }
 
         }),
@@ -68,7 +68,18 @@ module.exports = {
         
             }
 
-        })
+        }),
+
+    requireTitle :
+    check('title')
+        .trim()
+        .isLength({min :5, max: 20}),
+
+    requirePrice :
+    check('price')
+        .trim()
+        .toFloat
+
 
 
 };
