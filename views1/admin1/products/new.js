@@ -5,7 +5,7 @@ module.exports = ({erros}) =>{
 
     return layout ({
         content: `
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             <input type="text" name="title" placeholder="Product name" class="form-control"  />
             ${getError(erros,'title')}
             <input type="text" name="price" placeholder="Product price" class="form-control"  />

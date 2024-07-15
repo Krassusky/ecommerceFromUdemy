@@ -7,13 +7,15 @@ module.exports = {
     requireTitle :
     check('title')
         .trim()
-        .isLength({min :5, max: 20}),
+        .isLength({min :2, max: 20})
+        .withMessage('A valid title is required'),
 
     requirePrice :
     check('price')
         .trim()
         .isNumeric({min:0.01})
-        .toFloat(),
+        .toFloat()
+        .withMessage('A valid price is required'),
 
 
 
