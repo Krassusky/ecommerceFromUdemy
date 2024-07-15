@@ -14,7 +14,9 @@ router.get('/admin/products', (req,res)=>{
 
 
 });
-router.post(()=>{
+router.post('/admin/products',(req,res)=>{
+
+
 
 });
 
@@ -26,6 +28,17 @@ router.post('/admin/products/new',[
     requireTitle,
     requirePrice
 ], (req,res)=>{
+    const erros = validationResult(req);
+    console.log(erros);
+    // if(!erros.isEmpty()){
+    //     return res.send(erros.array());
+    //     }
+    //     productsRepo.create({
+    //         title: req.body.title,
+    //         price: req.body.price
+    //         });
+        
+    res.send('submited')
 
 });
 
