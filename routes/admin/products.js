@@ -33,17 +33,21 @@ router.post('/admin/products/new',[
     requirePrice
 ],
  upload.single('image'),
-(req,res)=>{
+ async (req,res)=>{
     const erros = validationResult(req);
-    console.log(erros);
-    console.log(req.file);
+    const image = req.file.buffer.toString('base64');
+    const {title, price} = req.body;
+    await productsRepo.create({title,price,image});
+
+ 
     if(!erros.isEmpty()){
         return res.send(productsNewTemplate({req,erros}));
         }
     // const {title, price} = req.body;
     // const newProduct = await 
     //     productsRepo.create({ title,price });
-        
+    console.log(erros);
+    console.log(req.file);
     res.send('submited')
 
 });

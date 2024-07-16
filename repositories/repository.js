@@ -52,9 +52,18 @@ module.exports = class Repository {
         attrs.id = this.randomId();
 
         const records = await this.getAll();
+
         records.push(attrs);
-        await this.writeAll(records);
+  
+     await this.writeAll(records);
+
         return attrs;
 
+    }
+    async writeAll(records) {
+        await fs.promises.writeFile(
+            this.filename,
+            JSON.stringify(records, null, 2)
+        );
     }
 }
