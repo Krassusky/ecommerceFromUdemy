@@ -7,7 +7,7 @@ module.exports = {
     requireTitle :
     check('title')
         .trim()
-        .isLength({min :2, max: 20})
+        .isLength({min :2, max: 50})
         .withMessage('A valid title is required'),
 
     requirePrice :
@@ -17,7 +17,11 @@ module.exports = {
         .toFloat()
         .withMessage('A valid price is required'),
 
-
+    requireImage:
+    check('image')
+    .trim()
+    .isLength({min:1})
+    .withMessage('An image is required'),
 
 
 
