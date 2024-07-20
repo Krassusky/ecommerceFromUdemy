@@ -14,7 +14,7 @@ module.exports = ({ req, errors }) =>{
                     ${getError(errors, 'password')}
                     <input type="password" name="passwordConfirmation" placeholder="passwordConfirmation" class="form-control" />
                     <a style="color: red;">${getError(errors, 'passwordConfirmation')}</a>
-                   
+               
                     <button class="btn btn-primary"> Sign Up </button>
                     
                 <form>

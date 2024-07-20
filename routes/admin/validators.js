@@ -4,25 +4,7 @@ const usersRepo = require('../../repositories/users');
 module.exports = {
 
 
-    requireTitle :
-    check('title')
-        .trim()
-        .isLength({min :2, max: 50})
-        .withMessage('A valid title is required'),
 
-    requirePrice :
-    check('price')
-        .trim()
-        .isLength({min:2})
-        .isNumeric({min:0.01})
-        .toFloat()
-        .withMessage('A valid price is required'),
-
-    requireImage:
-    check('image')
-    .trim()
-    .isLength({min:10})
-    .withMessage('An image is required'),
 
 
 
@@ -92,7 +74,27 @@ module.exports = {
         
             }
 
-        })
+        }),
+        
+        requireTitle :
+        check('title')
+            .trim()
+            .isLength({min :2, max: 50})
+            .withMessage('A valid title is required'),
+    
+        requirePrice :
+        check('price')
+            .trim()
+            .isLength({min:2})
+            .isNumeric({min:0.01})
+            .toFloat()
+            .withMessage('A valid price is required')
+    
+        // requireImage:
+        // check('image')
+        // .trim()
+        // .isLength({min:10})
+        // .withMessage('An image is required')
 
 
         

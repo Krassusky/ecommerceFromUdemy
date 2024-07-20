@@ -1,4 +1,4 @@
-module.exports = ({content}) => {
+module.exports = ({content,req}) => {
 
     return `
     <!DOCTYPE html>
@@ -18,13 +18,16 @@ module.exports = ({content}) => {
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Admin</a>
             <a class="navbar-brand" href="/admin/products/new">Product</a>
+            <a class="navbar-brand" href="/signin">signin</a>
+            <a class="navbar-brand" href="/signup">signup</a>
+            <a class="navbar-brand" href="/signout">signout</a>
         </div>
     </nav>
 
     <body>
        
         <div class= "container">
-  
+
 
             ${content}
         </div>

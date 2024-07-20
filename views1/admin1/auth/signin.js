@@ -16,7 +16,6 @@ module.exports = ({ req, errors }) =>{
                     <button class="btn btn-primary"> Sign in </button>
                     <div><a href="/signup">don't have an Account? Sign up here</a></div>
                     
-                    your Id is: 
 
 
                 </form>
