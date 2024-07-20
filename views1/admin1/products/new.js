@@ -11,7 +11,7 @@ module.exports = ({erros}) =>{
             <input type="text" name="price" placeholder="Product price" class="form-control"  />
             ${getError(erros,'price')}
             <input type="file" name="image" placeholder="Up load an Image" class="form-control"  />
-
+            ${getError(erros,'image')}
             <button class="btn btn-primary"> Submit </button>
 
 

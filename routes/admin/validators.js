@@ -13,6 +13,7 @@ module.exports = {
     requirePrice :
     check('price')
         .trim()
+        .isLength({min:2})
         .isNumeric({min:0.01})
         .toFloat()
         .withMessage('A valid price is required'),
@@ -20,7 +21,7 @@ module.exports = {
     requireImage:
     check('image')
     .trim()
-    .isLength({min:1})
+    .isLength({min:10})
     .withMessage('An image is required'),
 
 

@@ -31,14 +31,14 @@ handleErros(signupTemplate),
 async (req, res)=>{
    
     const {email, password} = req.body;
-    const user = await usersRepo.create({email,password,});
+    const user = await usersRepo.create({email,password});
 
     req.session.userId = user.id;
 
         res.send(`User created successfully  
             <a href="#" onclick="history.back();" class="return-button">Return</a>`);
-        console.log(req.body);
-        console.log(errors);
+        // console.log(req.body);
+        // console.log(errors);
 });
 
 router.get('/signout', (req,res) => {
