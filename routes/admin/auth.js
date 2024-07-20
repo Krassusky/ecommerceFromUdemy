@@ -1,6 +1,6 @@
 const express = require ('express');
 
-const {handleErros } = require ('./middlewares');
+const {handleErros, requireAuth } = require ('./middlewares');
 const usersRepo = require ('../../repositories/users');
 const signupTemplate = require ('../../views1/admin1/auth/signup');
 const signinTemplate = require ('../../views1/admin1/auth/signin');
@@ -35,16 +35,14 @@ async (req, res)=>{
 
     req.session.userId = user.id;
 
-        res.send(`User created successfully  
-            <a href="#" onclick="history.back();" class="return-button">Return</a>`);
+    res.redirect('/admin/products');
         // console.log(req.body);
         // console.log(errors);
 });
 
-router.get('/signout', (req,res) => {
+router.get('/signout', requireAuth, (req,res) => {
     req.session = null;
-    res.send(`You are now signed out <a href="#" onclick="window.location.href='/signin'" class="return-button">Sign in</a>
-        `);
+    res.redirect('/signin')
 
 });
 
@@ -66,8 +64,7 @@ async (req,res) => {
     const user = await usersRepo.getOneBy({email});
          
     req.session.userId = user.id;
-    return res.send(`you are id is ${req.session.userId} <a href="#" onclick="history.back();" class="return-button">Return</a>`);
-    
+    return res.redirect('/admin/products');
 
 });
 

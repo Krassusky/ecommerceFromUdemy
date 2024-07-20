@@ -12,3 +12,13 @@
     margin: 1vw;
     color: red;
 }
+.headerOfProdocutsListsAdmin{
+    display: flex;
+    justify-content: space-between;
+
+}
+.btn{
+    align-items: center;
+    align-content: center;
+
+}

@@ -8,7 +8,7 @@ module.exports = {
 
 
 
-    requireEmail : 
+    requireEmail: 
         check('email')
         .trim()
         .normalizeEmail()
@@ -22,13 +22,13 @@ module.exports = {
             }
         }),
 
-    requirePassword :
+    requirePassword:
     check('password')
         .trim()
         .isLength({min :4, max: 22})
         .withMessage('Password must be between 4 and 22 characters'),
 
-    requirePasswordConfirmation :
+    requirePasswordConfirmation:
     check('passwordConfirmation')
         .trim()
         .isLength({min :4, max: 22})
@@ -76,13 +76,13 @@ module.exports = {
 
         }),
         
-        requireTitle :
+        requireTitle:
         check('title')
             .trim()
             .isLength({min :2, max: 50})
             .withMessage('A valid title is required'),
     
-        requirePrice :
+        requirePrice:
         check('price')
             .trim()
             .isLength({min:2})
@@ -92,8 +92,8 @@ module.exports = {
     
         requireImage:
         check('image')
-        .trim()
-        .isLength({min:10})
+        .notEmpty()
+        // .trim()
         .withMessage('An image is required')
 
 

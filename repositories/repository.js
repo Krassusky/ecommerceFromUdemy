@@ -29,6 +29,19 @@ module.exports = class Repository {
         return records.find(record => record.id === id);
     }
 
+    async update(id,attrs){
+        const records = await this.getAll();
+        const record = records.find(record => record.id===id);
+        if(!record){
+            throw new Error(`No record with id ${id}`);
+            }
+            Object.assign(record,attrs);
+            await this.writeAll(records);
+
+
+    }
+
+
     async getOneBy(filters) {
         const records = await this.getAll();
 
