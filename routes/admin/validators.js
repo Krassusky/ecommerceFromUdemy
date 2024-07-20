@@ -88,13 +88,13 @@ module.exports = {
             .isLength({min:2})
             .isNumeric({min:0.01})
             .toFloat()
-            .withMessage('A valid price is required')
+            .withMessage('A valid price is required'),
     
-        // requireImage:
-        // check('image')
-        // .trim()
-        // .isLength({min:10})
-        // .withMessage('An image is required')
+        requireImage:
+        check('image')
+        .trim()
+        .isLength({min:10})
+        .withMessage('An image is required')
 
 
         

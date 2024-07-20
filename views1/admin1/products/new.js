@@ -7,11 +7,11 @@ module.exports = ({req, errors}) =>{
         content: `
         <form method="POST" enctype="multipart/form-data">
             <input type="text" name="title" placeholder="Product name" class="form-control"  />
-            ${getError(errors, 'title')}
+            <spam class="waringnsForErrosOnSubmit">${getError(errors, 'title')}</spam>
             <input type="text" name="price" placeholder="Product price" class="form-control"  />
-            ${getError(errors, 'price')}
+            <spam class="waringnsForErrosOnSubmit">${getError(errors, 'price')}</spam>
             <input type="file" name="image" placeholder="Up load an Image" class="form-control"  />
-            
+            <br>
             <button class="btn btn-primary"> Submit </button>
 
            

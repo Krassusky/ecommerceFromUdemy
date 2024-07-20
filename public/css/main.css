@@ -5,3 +5,10 @@
 .container{
     margin-top: 8vh;
 }
+.form-control{
+    /* margin: 1vh; */
+}
+.waringnsForErrosOnSubmit{
+    margin: 1vw;
+    color: red;
+}

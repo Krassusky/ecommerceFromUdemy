@@ -8,13 +8,13 @@ module.exports = ({ req, errors }) =>{
             <div>
                 
                 <form method="POST">
-                    <input type="text" name="email" placeholder="email" class="form-control" />
-                    ${getError(errors, 'email')}
+                    <input type="text" name="email" placeholder="email ${getError(errors, 'email')}" class="form-control" />
+                    <spam class="waringnsForErrosOnSubmit">${getError(errors, 'email')}</spam>
                     <input type="password" name="password" placeholder="password" class="form-control"/>
-                    ${getError(errors, 'password')}
+                    <spam class="waringnsForErrosOnSubmit">${getError(errors, 'password')}</spam>
                     <input type="password" name="passwordConfirmation" placeholder="passwordConfirmation" class="form-control" />
-                    <a style="color: red;">${getError(errors, 'passwordConfirmation')}</a>
-               
+                    <spam class="waringnsForErrosOnSubmit">${getError(errors, 'passwordConfirmation')}</spam>
+                    <br>
                     <button class="btn btn-primary"> Sign Up </button>
                     
                 <form>
