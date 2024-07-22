@@ -8,7 +8,7 @@ module.exports = ({product,errors}) =>{
        
         content: `
         
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             <input type="text" name="title" value="${product.title}" class="form-control"  />
             <spam class="waringnsForErrosOnSubmit">${getError(errors, 'title')}</spam>
             <input type="text" name="price" value="${product.price}" class="form-control"  />

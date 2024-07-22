@@ -37,6 +37,7 @@ module.exports = class Repository {
             }
             Object.assign(record,attrs);
             await this.writeAll(records);
+            
 
 
     }
@@ -58,6 +59,14 @@ module.exports = class Repository {
                 return record;
             }
         }
+    }
+
+    async delete(id){
+        const records = await this.getAll();
+        const filteredRecords = records.filter(record=> record.id !== id);
+        await this.writeAll(filteredRecords);
+
+
     }
 
     async create(attrs){

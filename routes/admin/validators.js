@@ -85,7 +85,7 @@ module.exports = {
         requirePrice:
         check('price')
             .trim()
-            .isLength({min:2})
+            .isLength({min:1})
             .isNumeric({min:0.01})
             .toFloat()
             .withMessage('A valid price is required'),

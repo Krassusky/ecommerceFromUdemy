@@ -37,20 +37,25 @@ router.post('/admin/products/new',
 [
     requireTitle,
     requirePrice,
-    // requireImage
 ],
 
 handleErros(productsNewTemplate),
  async (req,res)=>{
    
  
-    const image = req.file.buffer.toString('base64');
-    const {title, price} = req.body;
+    if(req.file){
+        const image = req.file.buffer.toString('base64');
+        const {title, price} = req.body;
     await productsRepo.create({title,price,image});
+    }else
+    { 
+        const image = "";
+        const {title, price} = req.body;
+        await productsRepo.create({title,price,image});
+    }
 
 
     res.redirect('/admin/products');
-    // above is how to redirect to a new page
 
 });
 
@@ -61,7 +66,6 @@ router.get('/admin/products/:id/edit', requireAuth,
             return res.send('Product not found');
         }
     res.send(productEditTemplate({product}));
-console.log(req.params.id);
 
 });
 
@@ -71,15 +75,16 @@ router.post('/admin/products/:id/edit',
     [
     requireTitle,
     requirePrice,
-    // requireImage
     ],
     handleErros(productEditTemplate, async (req) =>{
         const product = await productsRepo.getOne(req.params.id);
         return {product};
     }),
     async (req,res)=>{
-        const changes = req.body;
 
+        
+        const changes = req.body;
+        
         if(req.file){
             changes.image = req.file.buffer.toString('base64');
         }
@@ -89,17 +94,15 @@ router.post('/admin/products/:id/edit',
             return res.send('Item not found');
         }
         res.redirect('/admin/products');
-    }
-);
 
 
+    });
 
-router.get('/admin/products/:id/delete', requireAuth,
-     async (req,res)=>{
-
-    
-    console.log(req.params.id);
-
+router.post('/admin/products/:id/delete', requireAuth,
+    async (req,res)=>{
+        await productsRepo.delete(req.params.id);
+        
+    res.redirect('/admin/products');
 });
 
 module.exports = router;

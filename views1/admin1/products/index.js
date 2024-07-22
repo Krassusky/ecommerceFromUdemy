@@ -8,7 +8,12 @@ module.exports = ({products})=>{
             <td scope="row">${product.title}</td>
             <td>${product.price}</td>
             <td><a href="/admin/products/${product.id}/edit" class="btn btn-info">Edit</a></td>
-            <td><a href="/admin/products/${product.id}/delete" class="btn btn-danger">Delete</a></td>
+            <td>
+                <form method="POST" action="/admin/products/${product.id}/delete" >
+                <button class="btn btn-danger">Delete</button> 
+                
+                </form>
+            </td>
         </tr>
 
 
