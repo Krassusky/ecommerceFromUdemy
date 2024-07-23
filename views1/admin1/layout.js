@@ -16,11 +16,12 @@ module.exports = ({content,req}) => {
 
     <nav class="navbar fixed-top bg-body-tertiary MyNavbar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/admin/products/new">Admin</a>
+            <a class="navbar-brand" href="/admin/products/new">Add new product</a>
             <a class="navbar-brand" href="/admin/products">Product</a>
             <a class="navbar-brand" href="/signin">signin</a>
             <a class="navbar-brand" href="/signup">signup</a>
             <a class="navbar-brand" href="/signout">signout</a>
+            <a class="navbar-brand" href="/">Home</a>
         </div>
     </nav>
 

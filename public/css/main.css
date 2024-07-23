@@ -3,11 +3,9 @@
     margin-bottom: 10vh;
 }
 .container{
-    margin-top: 8vh;
+    margin-top: 5rem;
 }
-.form-control{
-    /* margin: 1vh; */
-}
+
 .waringnsForErrosOnSubmit{
     margin: 1vw;
     color: red;
@@ -15,10 +13,26 @@
 .headerOfProdocutsListsAdmin{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
 
 }
 .btn{
     align-items: center;
     align-content: center;
 
+}
+.CardList{
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.card{
+    width: 10rem;
+    height: 20rem;
+}
+.card-img-top{
+    width: 10rem;
+    max-height: 100%;
 }
