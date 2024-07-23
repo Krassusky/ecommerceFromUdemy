@@ -9,7 +9,12 @@ module.exports = ({products}) =>{
   <div class="card-body">
     <h5 class="card-title">${product.title}</h5>
     <p class="card-text">Price: ${product.price}</p>
-    <a href="#" class="btn btn-primary">Add to cart</a>
+    <div class="addToCart">
+    <form action="/cart/products" method="POST">
+      <input type="hidden" name="productId" value="${product.id}">
+      <button class="btn btn-primary">Add to cart</button>
+    </form>
+    </div>
   </div>
 </div>
 
