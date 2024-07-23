@@ -31,8 +31,15 @@
 .card{
     width: 10rem;
     height: 20rem;
+    object-fit: contain;
+}
+.card-title{
+    font-size: 2vw;
+
 }
 .card-img-top{
-    width: 10rem;
-    max-height: 100%;
+    object-fit: contain;
+    width: 10em;
+    max-height: 12rem;
+    border: 0.1rem solid white;
 }

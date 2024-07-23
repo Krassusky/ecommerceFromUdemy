@@ -19,6 +19,7 @@ module.exports = ({content,req}) => {
         <div>
             <a class="navbar-brand" href="/admin/orders">Orders</a>
             <a class="navbar-brand" href="/">Home</a>
+            <a>ddddd<i class="bi bi-cart"></i></a>
         </div>
             </button>
 
